@@ -7,6 +7,11 @@ import 'package:crypto_management_task/infrastructure/mappers/coin_mapper.dart';
 import 'package:crypto_management_task/infrastructure/mappers/favorite_coin_mapper.dart';
 import 'package:injectable/injectable.dart';
 
+/// Implementation of [CoinRepository] for managing coin and favorite coin operations.
+///
+/// Acts as an abstraction layer between the domain and data sources, handling
+/// coin-related API communication via [CoinApi]. Provides methods for retrieving
+/// all coins, managing favorites, and ensures business logic is decoupled from infrastructure.
 @LazySingleton(as: CoinRepository)
 class CoinRepositoryImpl implements CoinRepository {
   final CoinApi _coinApi;

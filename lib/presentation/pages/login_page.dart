@@ -2,8 +2,8 @@ import 'package:crypto_management_task/core/utils/form_validations/validation.da
 import 'package:crypto_management_task/core/utils/form_validations/validator.dart';
 import 'package:crypto_management_task/presentation/blocs/auth/auth_bloc.dart';
 import 'package:crypto_management_task/presentation/pages/home_page.dart';
-import 'package:crypto_management_task/presentation/widgets/main_button.dart';
-import 'package:crypto_management_task/presentation/widgets/main_text_form_field.dart';
+import 'package:crypto_management_task/presentation/widgets/main_widgets/main_button.dart';
+import 'package:crypto_management_task/presentation/widgets/main_widgets/main_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,8 +16,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _emailController;
-  late TextEditingController _passwordController;
+  late final TextEditingController _emailController;
+  late final TextEditingController _passwordController;
   bool _obscurePassword = true;
 
   @override
@@ -41,14 +41,9 @@ class _LoginPageState extends State<LoginPage> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Unauthenticated) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.message)));
+            _showErrorMessage(context, state.message);
           } else if (state is Authenticated) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (_) => const HomePage()),
-            );
+            _goToHomePage(context);
           }
         },
         builder: (context, state) {
@@ -64,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _emailController,
                     labelText: 'Email',
                     keyboardType: TextInputType.emailAddress,
+                    // Applies a chain of validation rules (required and email) to the input field.
                     validator: Validator.apply(context, [
                       RequiredValidation(),
                       EmailValidation(),
@@ -105,6 +101,19 @@ class _LoginPageState extends State<LoginPage> {
         },
       ),
     );
+  }
+
+  void _goToHomePage(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const HomePage()),
+    );
+  }
+
+  void _showErrorMessage(BuildContext context, String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _login() {

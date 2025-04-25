@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
+/// The primary button widget used throughout the app.
+///
+/// Provides a consistent, customizable button with loading and icon support,
+/// ensuring unified styling and interaction across all screens.
 class MainButton extends StatelessWidget {
   final String title;
   final IconData? icon;
   final double width;
   final double height;
-  final Color color;
+  final Color? color;
   final bool isLoading;
   final VoidCallback? onTap;
   const MainButton({
@@ -13,7 +17,7 @@ class MainButton extends StatelessWidget {
     required this.title,
     required this.onTap,
     this.icon,
-    this.color = const Color.fromARGB(255, 26, 86, 207),
+    this.color,
     this.width = 120,
     this.height = 50,
     this.isLoading = false,
@@ -28,7 +32,7 @@ class MainButton extends StatelessWidget {
         height: height,
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: color,
+          color: color ?? Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(30),
         ),
         child: Center(
@@ -37,8 +41,7 @@ class MainButton extends StatelessWidget {
                   ? const CircularProgressIndicator.adaptive(
                     backgroundColor: Colors.white,
                   )
-                  : icon == null
-                  ? Text(
+                  : Text(
                     title,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -46,8 +49,7 @@ class MainButton extends StatelessWidget {
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
                     ),
-                  )
-                  : Icon(icon!, color: Colors.white, size: 24),
+                  ),
         ),
       ),
     );

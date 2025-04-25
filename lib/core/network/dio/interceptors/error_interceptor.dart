@@ -2,6 +2,10 @@
 import 'package:crypto_management_task/core/error/app_exception.dart';
 import 'package:dio/dio.dart';
 
+/// Intercepts HTTP errors and maps them to custom exception types.
+///
+/// Converts Dio errors and status codes (e.g. 401, 404, 500, timeouts) to
+/// project-specific exceptions for consistent error handling across the app.
 class ErrorInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {

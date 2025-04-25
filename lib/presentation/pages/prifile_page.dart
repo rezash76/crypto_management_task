@@ -2,8 +2,8 @@ import 'package:crypto_management_task/core/utils/form_validations/validation.da
 import 'package:crypto_management_task/core/utils/form_validations/validator.dart';
 import 'package:crypto_management_task/domain/entities/user.dart';
 import 'package:crypto_management_task/presentation/blocs/profile/profile_cubit.dart';
-import 'package:crypto_management_task/presentation/widgets/main_button.dart';
-import 'package:crypto_management_task/presentation/widgets/main_text_form_field.dart';
+import 'package:crypto_management_task/presentation/widgets/main_widgets/main_button.dart';
+import 'package:crypto_management_task/presentation/widgets/main_widgets/main_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,22 +44,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Profile')),
       body: BlocConsumer<ProfileCubit, ProfileState>(
-        listener: (context, state) {
-          if (state is ProfileUpdateSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Phone number updated!')),
-            );
-          } else if (state is ProfileUpdateError) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.message)));
-          }
-        },
+        listener: _handleProfileUpdateState,
         builder: (context, state) {
           if (state is ProfileLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          //  if (state is ProfileLoaded) {
+
           if (state is ProfileLoaded) {
             _user = state.user;
             _fillUserControllers(_user);
@@ -101,6 +91,21 @@ class _ProfilePageState extends State<ProfilePage> {
         },
       ),
     );
+  }
+
+  void _handleProfileUpdateState(BuildContext context, ProfileState state) {
+    if (state is ProfileUpdateSuccess) {
+      _showSnackBar(context, 'Phone number updated!');
+    }
+    if (state is ProfileUpdateError) {
+      _showSnackBar(context, state.message);
+    }
+  }
+
+  void _showSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(message)));
   }
 
   void _fillUserControllers(User? user) {

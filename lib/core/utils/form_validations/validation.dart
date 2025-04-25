@@ -1,3 +1,4 @@
+import 'package:crypto_management_task/core/utils/regex.dart';
 import 'package:flutter/material.dart';
 
 abstract class Validation<T> {
@@ -39,8 +40,7 @@ class PhoneValidation extends Validation<String> {
   @override
   String? validate(BuildContext context, String? value) {
     if (value == null) return null;
-    final phoneRegex = RegExp(r'^(09|\+989)\d{9}$');
-    if (!phoneRegex.hasMatch(value)) {
+    if (!RegexPatterns.phone.hasMatch(value)) {
       return 'Please enter a valid phone number';
     }
     return null;
@@ -57,10 +57,7 @@ class EmailValidation extends Validation<String> {
   @override
   String? validate(BuildContext context, String? value) {
     if (value == null) return null;
-    final emailRegex = RegExp(
-      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$',
-    );
-    if (!emailRegex.hasMatch(value)) {
+    if (!RegexPatterns.email.hasMatch(value)) {
       return 'Please enter a valid email address';
     }
     return null;

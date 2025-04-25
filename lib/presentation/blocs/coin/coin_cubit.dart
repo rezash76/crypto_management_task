@@ -31,6 +31,11 @@ class CoinCubit extends Cubit<CoinState> {
     }
   }
 
+  /// Toggles the favorite status of a coin optimistically and updates the UI.
+  ///
+  /// Immediately updates the local state and emits the new coins/favorites list,
+  /// then attempts to persist the change via a transaction. If an error occurs,
+  /// rolls back the change and emits an error state.
   Future<void> toggleFavorite(Coin coin) async {
     final index = _coins.indexWhere((c) => c.id == coin.id);
     if (index == -1) return;

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// The primary text form field widget used throughout the app.
+///
+/// This customizable input field standardizes text entry UI across all forms and screens,
+/// ensuring consistent styling, validation, and user experience in the application.
 class MainTextFormField extends StatelessWidget {
   const MainTextFormField({
     super.key,

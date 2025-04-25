@@ -1,3 +1,10 @@
+import 'package:crypto_management_task/core/utils/regex.dart';
+
+/// Value object representing a validated email address as part of business logic.
+///
+/// Enforces email format validation on creation and throws a [FormatException]
+/// for invalid values. By modeling email as a value object, business rules
+/// around email validation are centralized and consistently applied throughout the domain.
 class Email {
   final String value;
 
@@ -8,8 +15,7 @@ class Email {
   }
 
   bool _isValidEmail(String email) {
-    final regex = RegExp(r'^[\w\.-]+@[\w\.-]+\.\w{2,4}$');
-    return regex.hasMatch(email);
+    return RegexPatterns.email.hasMatch(email);
   }
 
   @override

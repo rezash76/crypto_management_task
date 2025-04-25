@@ -1,5 +1,10 @@
 import 'package:crypto_management_task/domain/entities/coin.dart';
 
+/// Data model representing a coin as received from or sent to external sources (e.g. APIs).
+///
+/// Provides factory constructors for mapping from JSON and from the domain [Coin] entity.
+/// Acts as a bridge between the data/infrastructure layer and the domain layer,
+/// enabling serialization, deserialization, and conversion between different representations.
 class CoinModel {
   final int id;
   final int createdAt;

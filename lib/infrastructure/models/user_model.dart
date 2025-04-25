@@ -1,5 +1,11 @@
 import 'package:crypto_management_task/domain/entities/user.dart';
 
+/// Data model representing a user as received from or sent to external sources (e.g. APIs).
+///
+/// Provides factory constructors for mapping from JSON and from the domain [User] entity.
+/// This class acts as a bridge between the infrastructure/data layer and the domain layer,
+/// enabling serialization, deserialization, and conversion between different representations.
+
 class UserModel {
   final int id;
   final int createdAt;

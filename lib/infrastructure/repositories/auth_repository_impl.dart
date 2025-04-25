@@ -9,6 +9,12 @@ import 'package:crypto_management_task/infrastructure/models/auth_token_model.da
 import 'package:crypto_management_task/infrastructure/models/user_model.dart';
 import 'package:injectable/injectable.dart';
 
+/// Implementation of [AuthRepository] that coordinates authentication logic.
+///
+/// This repository acts as an abstraction layer between the domain and data sources,
+/// handling API communication via [AuthApi] and secure token storage via [AuthStorage].
+/// It manages login, user retrieval, and authentication state checks, ensuring
+/// business logic remains decoupled from infrastructure details.
 @LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthApi _authApi;

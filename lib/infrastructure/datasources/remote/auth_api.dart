@@ -27,7 +27,6 @@ class AuthApi {
       final response = await _apiService.get(ApiConstants.me);
       return response.data;
     } catch (e) {
-      print(e);
       rethrow;
     }
   }
