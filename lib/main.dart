@@ -1,4 +1,5 @@
 import 'package:crypto_management_task/core/di/injection.dart';
+import 'package:crypto_management_task/core/theme/theme_config.dart';
 import 'package:crypto_management_task/presentation/blocs/app_them/app_theme_cubit.dart';
 import 'package:crypto_management_task/presentation/blocs/auth/auth_bloc.dart';
 import 'package:crypto_management_task/presentation/blocs/coin/coin_cubit.dart';
@@ -50,7 +51,10 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Crypto Management',
           debugShowCheckedModeBanner: false,
-          theme: (state as AppThemeData).themeData,
+          theme: ThemeConfig.light().getTheme(),
+          darkTheme: ThemeConfig.dark().getTheme(),
+          themeMode:
+              (state is AppThemeData) ? state.themeMode : ThemeMode.system,
           home: const SplashPage(),
         );
       },

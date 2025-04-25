@@ -4,9 +4,6 @@ part of 'app_theme_cubit.dart';
 sealed class AppThemeState {}
 
 final class AppThemeData extends AppThemeState {
-  final ThemeData themeData;
-  final AppTheme appTheme;
-  AppThemeData(this.themeData, this.appTheme);
+  final ThemeMode themeMode;
+  AppThemeData(this.themeMode);
 }
-
-enum AppTheme { light, dark }

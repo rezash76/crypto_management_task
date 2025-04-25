@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:crypto_management_task/presentation/blocs/app_them/app_theme_cubit.dart';
 
@@ -6,7 +7,7 @@ void main() {
   group('AppThemeCubit', () {
     test('initial state is light theme', () {
       final cubit = AppThemeCubit();
-      expect((cubit.state as AppThemeData).appTheme, AppTheme.light);
+      expect((cubit.state as AppThemeData).themeMode, ThemeMode.light);
     });
   });
 }
