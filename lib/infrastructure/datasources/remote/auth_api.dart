@@ -1,5 +1,6 @@
 import 'package:crypto_management_task/application/dtos/login_dto.dart';
 import 'package:crypto_management_task/core/constants/api_constants.dart';
+import 'package:crypto_management_task/core/constants/di_constants.dart';
 import 'package:crypto_management_task/core/network/api_service.dart';
 import 'package:injectable/injectable.dart';
 
@@ -7,7 +8,7 @@ import 'package:injectable/injectable.dart';
 class AuthApi {
   final ApiService _apiService;
 
-  AuthApi(@Named('auth') this._apiService);
+  AuthApi(@Named(DiConstants.authName) this._apiService);
 
   Future<Map<String, dynamic>> login(LoginDto loginDto) async {
     try {

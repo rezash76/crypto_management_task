@@ -1,5 +1,6 @@
 import 'package:crypto_management_task/application/dtos/toggle_favorite_coin_dto.dart';
 import 'package:crypto_management_task/core/constants/api_constants.dart';
+import 'package:crypto_management_task/core/constants/di_constants.dart';
 import 'package:crypto_management_task/core/network/api_service.dart';
 import 'package:crypto_management_task/infrastructure/models/coin_model.dart';
 import 'package:crypto_management_task/core/error/app_exception.dart';
@@ -10,7 +11,7 @@ import 'package:injectable/injectable.dart';
 class CoinApi {
   final ApiService _apiService;
 
-  CoinApi(@Named('coin') this._apiService);
+  CoinApi(@Named(DiConstants.coinName) this._apiService);
 
   Future<List<CoinModel>> getAllCoins() async {
     try {
