@@ -36,12 +36,14 @@ class CoinRepositoryImpl implements CoinRepository {
   }
 
   @override
-  Future<void> toggleFavorite({required ToggleFavoriteCoinDto coinId}) async {
+  Future<void> toggleFavorite({
+    required ToggleFavoriteCoinDto toggleFaveCoinDto,
+  }) async {
     try {
-      if (coinId.isFavorite) {
-        await _coinApi.deleteFavoriteCoin(coinId);
+      if (toggleFaveCoinDto.isFavorite) {
+        await _coinApi.deleteFavoriteCoin(toggleFaveCoinDto);
       } else {
-        await _coinApi.addFavoriteCoin(coinId);
+        await _coinApi.addFavoriteCoin(toggleFaveCoinDto);
       }
     } catch (e) {
       rethrow;

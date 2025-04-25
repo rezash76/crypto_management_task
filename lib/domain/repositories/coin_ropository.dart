@@ -5,5 +5,7 @@ import 'package:crypto_management_task/domain/entities/favorite_coin.dart';
 abstract interface class CoinRepository {
   Future<List<Coin>> getAllCoins();
   Future<List<FavoriteCoin>> getAllFavouriteCoins();
-  Future<void> toggleFavorite({required ToggleFavoriteCoinDto coinId});
+  Future<void> toggleFavorite({
+    required ToggleFavoriteCoinDto toggleFaveCoinDto,
+  });
 }

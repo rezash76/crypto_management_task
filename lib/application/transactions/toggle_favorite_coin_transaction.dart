@@ -12,5 +12,5 @@ class ToggleFavoriteCoinTransaction
 
   @override
   Future<void> call(ToggleFavoriteCoinDto request) async =>
-      await coinRepository.toggleFavorite(coinId: request);
+      await coinRepository.toggleFavorite(toggleFaveCoinDto: request);
 }
